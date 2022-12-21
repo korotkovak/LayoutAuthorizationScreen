@@ -59,9 +59,9 @@ class ViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Inter-Regular", size: 18)
+        button.titleLabel?.font = UIFont(name: "Inter-Bold", size: 16)
         button.layer.cornerRadius = 25
-        button.backgroundColor = .white
+        button.backgroundColor = .systemIndigo
         UIButton.shadowSetting(button)
         return button
     }()

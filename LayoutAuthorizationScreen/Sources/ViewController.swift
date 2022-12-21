@@ -66,6 +66,14 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private lazy var passwordRecoveryButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Forgot your password?", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Inter-Regular", size: 16)
+        return button
+    }()
+
 
     // MARK: - Lifecycle
 
@@ -84,13 +92,14 @@ class ViewController: UIViewController {
             imageBackground,
             titleLabel, userNameTF,
             passwordTF,
-            loginButton
+            loginButton,
+            passwordRecoveryButton
         ])
     }
 
     private func setupLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(130)
+            make.top.equalTo(view).offset(110)
             make.centerX.equalTo(view)
         }
 
@@ -110,6 +119,13 @@ class ViewController: UIViewController {
 
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTF.snp.bottom).offset(50)
+            make.width.equalTo(320)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view)
+        }
+
+        passwordRecoveryButton.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
             make.width.equalTo(320)
             make.height.equalTo(50)
             make.centerX.equalTo(view)
@@ -167,7 +183,7 @@ extension UITextField {
 
     static func shadowSetting(_ textField: UITextField) {
         textField.layer.shadowColor = UIColor.black.cgColor
-        textField.layer.shadowOpacity = 0.3
+        textField.layer.shadowOpacity = 0.2
         textField.layer.shadowOffset = .zero
         textField.layer.shadowRadius = 10
         textField.layer.shouldRasterize = true

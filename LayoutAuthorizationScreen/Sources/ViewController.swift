@@ -43,6 +43,19 @@ class ViewController: UIViewController {
         return textField
     }()
 
+    private lazy var passwordTF: UITextField = {
+        let textField = UITextField()
+        textField.textColor = .black
+        textField.textAlignment = .left
+        textField.placeholder = "Your password"
+        textField.font = UIFont(name: "Inter-Regular", size: 14)
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 25
+        UITextField.shadowSetting(textField)
+        return textField
+    }()
+
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -50,13 +63,13 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         setupHierarchy()
         setupLayout()
-        addingIconsInTF()
+        setupIcons()
     }
 
     // MARK: - Setup
 
     private func setupHierarchy() {
-        view.addSubviews([imageBackground, titleLabel, userNameTF])
+        view.addSubviews([imageBackground, titleLabel, userNameTF, passwordTF])
     }
 
     private func setupLayout() {
@@ -71,9 +84,16 @@ class ViewController: UIViewController {
             make.height.equalTo(50)
             make.centerX.equalTo(view)
         }
+
+        passwordTF.snp.makeConstraints { make in
+            make.top.equalTo(userNameTF.snp.bottom).offset(20)
+            make.width.equalTo(320)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view)
+        }
     }
 
-    private func addingIconsInTF() {
+    private func setupIcons() {
         if let imageLeftIconInUserName = UIImage(systemName: "person") {
             userNameTF.setLeftIcon(imageLeftIconInUserName)
         }
@@ -81,6 +101,12 @@ class ViewController: UIViewController {
         if let imageRightIconInUserName = UIImage(systemName: "checkmark.circle.fill") {
             userNameTF.setRightIcon(imageRightIconInUserName)
         }
+
+
+        if let imageLeftIconInPassword = UIImage(systemName: "exclamationmark.lock") {
+            passwordTF.setLeftIcon(imageLeftIconInPassword)
+        }
+
     }
 
 

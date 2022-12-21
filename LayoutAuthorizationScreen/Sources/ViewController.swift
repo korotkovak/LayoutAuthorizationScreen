@@ -74,6 +74,41 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private lazy var separatorLeftView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        view.layer.cornerRadius = 2
+        return view
+    }()
+
+    private lazy var separatorRightView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        view.layer.cornerRadius = 2
+        return view
+    }()
+
+    private lazy var separatorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "or connect with"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Inter-Regular", size: 14)
+        label.textColor = .gray
+        return label
+    }()
+
+    private lazy var stack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fillProportionally
+        stack.spacing = 5
+        stack.addArrangedSubview(separatorLeftView)
+        stack.addArrangedSubview(separatorLabel)
+        stack.addArrangedSubview(separatorRightView)
+        return stack
+    }()
+
 
     // MARK: - Lifecycle
 
@@ -93,7 +128,8 @@ class ViewController: UIViewController {
             titleLabel, userNameTF,
             passwordTF,
             loginButton,
-            passwordRecoveryButton
+            passwordRecoveryButton,
+            stack
         ])
     }
 
@@ -130,6 +166,23 @@ class ViewController: UIViewController {
             make.height.equalTo(50)
             make.centerX.equalTo(view)
         }
+
+        separatorLeftView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.width.equalTo(100)
+        }
+
+        separatorRightView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.width.equalTo(100)
+        }
+
+
+        stack.snp.makeConstraints { make in
+            make.bottom.equalTo(view.snp.bottom).offset(-180)
+            make.left.equalTo(view).offset(30)
+            make.right.equalTo(view).offset(-30)
+        }
     }
 
     private func setupIcons() {
@@ -145,14 +198,8 @@ class ViewController: UIViewController {
         if let imageLeftIconInPassword = UIImage(systemName: "exclamationmark.lock") {
             passwordTF.setLeftIcon(imageLeftIconInPassword)
         }
-
     }
-
-
-
 }
-
-
 
 extension UIView {
     func addSubviews(_ subviews: [UIView]) {
@@ -201,4 +248,3 @@ extension UIButton {
         button.layer.rasterizationScale = UIScreen.main.scale
     }
 }
-

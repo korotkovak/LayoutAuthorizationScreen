@@ -55,6 +55,17 @@ class ViewController: UIViewController {
         return textField
     }()
 
+    private lazy var loginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Inter-Regular", size: 18)
+        button.layer.cornerRadius = 25
+        button.backgroundColor = .white
+        UIButton.shadowSetting(button)
+        return button
+    }()
+
 
     // MARK: - Lifecycle
 
@@ -69,7 +80,12 @@ class ViewController: UIViewController {
     // MARK: - Setup
 
     private func setupHierarchy() {
-        view.addSubviews([imageBackground, titleLabel, userNameTF, passwordTF])
+        view.addSubviews([
+            imageBackground,
+            titleLabel, userNameTF,
+            passwordTF,
+            loginButton
+        ])
     }
 
     private func setupLayout() {
@@ -87,6 +103,13 @@ class ViewController: UIViewController {
 
         passwordTF.snp.makeConstraints { make in
             make.top.equalTo(userNameTF.snp.bottom).offset(20)
+            make.width.equalTo(320)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view)
+        }
+
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordTF.snp.bottom).offset(50)
             make.width.equalTo(320)
             make.height.equalTo(50)
             make.centerX.equalTo(view)
@@ -144,11 +167,22 @@ extension UITextField {
 
     static func shadowSetting(_ textField: UITextField) {
         textField.layer.shadowColor = UIColor.black.cgColor
-        textField.layer.shadowOpacity = 0.2
+        textField.layer.shadowOpacity = 0.3
         textField.layer.shadowOffset = .zero
         textField.layer.shadowRadius = 10
         textField.layer.shouldRasterize = true
         textField.layer.rasterizationScale = UIScreen.main.scale
+    }
+}
+
+extension UIButton {
+    static func shadowSetting(_ button: UIButton) {
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
     }
 }
 

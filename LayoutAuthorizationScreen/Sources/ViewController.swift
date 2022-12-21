@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
 
@@ -21,21 +22,39 @@ class ViewController: UIViewController {
         return imageView
     }()
 
-    // MARK: - Outlets
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Login"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 30.0)
+        label.textColor = .white
+        return label
+    }()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupHierarchy()
+        setupLayout()
     }
 
     // MARK: - Setup
 
     private func setupHierarchy() {
-        view.addSubviews([imageBackground])
-
-
+        view.addSubviews([imageBackground, titleLabel])
     }
+
+    private func setupLayout() {
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view).offset(100)
+            make.left.equalTo(view).offset(30)
+            make.right.equalTo(view).offset(-30)
+        }
+    }
+
+
 
 }
 

@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Login"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 30.0)
+        label.font = UIFont(name: "Inter-Bold", size: 34)
         label.textColor = .white
         return label
     }()
@@ -48,9 +48,8 @@ class ViewController: UIViewController {
 
     private func setupLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(100)
-            make.left.equalTo(view).offset(30)
-            make.right.equalTo(view).offset(-30)
+            make.top.equalTo(view).offset(130)
+            make.centerX.equalTo(view)
         }
     }
 

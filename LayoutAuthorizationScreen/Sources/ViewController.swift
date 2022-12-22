@@ -74,6 +74,7 @@ class ViewController: UIViewController {
         return button
     }()
 
+    // separator
     private lazy var separatorLeftView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
@@ -109,6 +110,7 @@ class ViewController: UIViewController {
         return stack
     }()
 
+    // facebook button
     private lazy var facebookLabel: UILabel = {
         let label = UILabel()
         label.text = "Facebook"
@@ -138,14 +140,60 @@ class ViewController: UIViewController {
 
     private lazy var facebookButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 17
         button.backgroundColor = .systemBlue
+        button.addSubview(facebookStack)
         UIButton.shadowSetting(button)
         return button
     }()
 
+    // twitter button
+    private lazy var twitterLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Twitter"
+        label.textAlignment = .left
+        label.font = UIFont(name: "Inter-Bold", size: 14)
+        label.textColor = .white
+        return label
+    }()
 
+    private lazy var twitterImageView: UIImageView = {
+        let image = UIImage(named: "twitter")
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
 
+    private lazy var twitterStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fillProportionally
+        stack.spacing = 15
+        stack.addArrangedSubview(twitterImageView)
+        stack.addArrangedSubview(twitterLabel)
+        return stack
+    }()
+
+    private lazy var twitterButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 17
+        button.backgroundColor = .systemIndigo
+        button.addSubview(twitterStack)
+        UIButton.shadowSetting(button)
+        return button
+    }()
+
+    private lazy var facebookAndTwitterButtonStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fillEqually
+        stack.spacing = 15
+        stack.addArrangedSubview(facebookButton)
+        stack.addArrangedSubview(twitterButton)
+        return stack
+    }()
 
     // MARK: - Lifecycle
 
@@ -167,44 +215,42 @@ class ViewController: UIViewController {
             loginButton,
             passwordRecoveryButton,
             stackSeparator,
-            facebookButton
+            facebookAndTwitterButtonStack
         ])
-
-        facebookButton.addSubview(facebookStack)
     }
 
     private func setupLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(110)
+            make.top.equalTo(view).offset(90)
             make.centerX.equalTo(view)
         }
 
         userNameTF.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(50)
-            make.width.equalTo(320)
             make.height.equalTo(50)
-            make.centerX.equalTo(view)
+            make.left.equalTo(view).offset(40)
+            make.right.equalTo(view).offset(-40)
         }
 
         passwordTF.snp.makeConstraints { make in
             make.top.equalTo(userNameTF.snp.bottom).offset(20)
-            make.width.equalTo(320)
             make.height.equalTo(50)
-            make.centerX.equalTo(view)
+            make.left.equalTo(view).offset(40)
+            make.right.equalTo(view).offset(-40)
         }
 
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTF.snp.bottom).offset(50)
-            make.width.equalTo(320)
             make.height.equalTo(50)
-            make.centerX.equalTo(view)
+            make.left.equalTo(view).offset(40)
+            make.right.equalTo(view).offset(-40)
         }
 
         passwordRecoveryButton.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(10)
-            make.width.equalTo(320)
             make.height.equalTo(50)
-            make.centerX.equalTo(view)
+            make.left.equalTo(view).offset(40)
+            make.right.equalTo(view).offset(-40)
         }
 
         separatorLeftView.snp.makeConstraints { make in
@@ -218,14 +264,19 @@ class ViewController: UIViewController {
         }
 
         stackSeparator.snp.makeConstraints { make in
-            make.bottom.equalTo(view.snp.bottom).offset(-200)
+            make.bottom.equalTo(view.snp.bottom).offset(-170)
             make.left.equalTo(view).offset(30)
             make.right.equalTo(view).offset(-30)
         }
 
         facebookImageView.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.width.equalTo(20)
+            make.height.equalTo(18)
+            make.width.equalTo(18)
+        }
+
+        twitterImageView.snp.makeConstraints { make in
+            make.height.equalTo(18)
+            make.width.equalTo(18)
         }
 
         facebookStack.snp.makeConstraints { make in
@@ -234,14 +285,18 @@ class ViewController: UIViewController {
             make.centerY.equalTo(facebookButton.snp.centerY)
         }
 
-        facebookButton.snp.makeConstraints { make in
-            make.top.equalTo(stackSeparator.snp.bottom).offset(30)
-            make.left.equalTo(view).offset(30)
-            make.height.equalTo(40)
-            make.width.equalTo(150)
+        twitterStack.snp.makeConstraints { make in
+            make.left.equalTo(twitterButton.snp.left).offset(20)
+            make.right.equalTo(twitterButton.snp.right).offset(-20)
+            make.centerY.equalTo(twitterButton.snp.centerY)
         }
 
-
+        facebookAndTwitterButtonStack.snp.makeConstraints { make in
+            make.top.equalTo(stackSeparator.snp.bottom).offset(30)
+            make.left.equalTo(view).offset(30)
+            make.right.equalTo(view).offset(-30)
+            make.height.equalTo(40)
+        }
     }
 
     private func setupIcons() {

@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         textField.font = UIFont(name: "Inter-Regular", size: 14)
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 25
-        UITextField.shadowSetting(textField)
+        textField.shadowSetting()
         return textField
     }()
 
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         textField.font = UIFont(name: "Inter-Regular", size: 14)
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 25
-        UITextField.shadowSetting(textField)
+        textField.shadowSetting()
         return textField
     }()
 
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "Inter-Bold", size: 16)
         button.layer.cornerRadius = 25
         button.backgroundColor = .systemIndigo
-        UIButton.shadowSetting(button)
+        button.shadowSetting()
         return button
     }()
 
@@ -140,10 +140,10 @@ class ViewController: UIViewController {
 
     private lazy var facebookButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 17
+        button.layer.cornerRadius = 20
         button.backgroundColor = .systemBlue
         button.addSubview(facebookStack)
-        UIButton.shadowSetting(button)
+        button.shadowSetting()
         return button
     }()
 
@@ -177,10 +177,10 @@ class ViewController: UIViewController {
 
     private lazy var twitterButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 17
+        button.layer.cornerRadius = 20
         button.backgroundColor = .systemIndigo
         button.addSubview(twitterStack)
-        UIButton.shadowSetting(button)
+        button.shadowSetting()
         return button
     }()
 
@@ -194,6 +194,36 @@ class ViewController: UIViewController {
         stack.addArrangedSubview(twitterButton)
         return stack
     }()
+
+    // sign up button
+    private lazy var signUpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Dont have account?"
+        label.textAlignment = .left
+        label.font = UIFont(name: "Inter-Regular", size: 14)
+        label.textColor = .gray
+        return label
+    }()
+
+    private lazy var signUpButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Sign up", for: .normal)
+        button.setTitleColor(.systemIndigo, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Inter-Regular", size: 14)
+        return button
+    }()
+
+    private lazy var signUpStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fillProportionally
+        stack.spacing = 15
+        stack.addArrangedSubview(signUpLabel)
+        stack.addArrangedSubview(signUpButton)
+        return stack
+    }()
+
 
     // MARK: - Lifecycle
 
@@ -215,13 +245,14 @@ class ViewController: UIViewController {
             loginButton,
             passwordRecoveryButton,
             stackSeparator,
-            facebookAndTwitterButtonStack
+            facebookAndTwitterButtonStack,
+            signUpStack
         ])
     }
 
     private func setupLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(90)
+            make.top.equalTo(view).offset(80)
             make.centerX.equalTo(view)
         }
 
@@ -291,12 +322,26 @@ class ViewController: UIViewController {
             make.centerY.equalTo(twitterButton.snp.centerY)
         }
 
+        facebookButton.snp.makeConstraints { make in
+            make.height.equalTo(40)
+        }
+
+        twitterButton.snp.makeConstraints { make in
+            make.height.equalTo(40)
+        }
+
         facebookAndTwitterButtonStack.snp.makeConstraints { make in
             make.top.equalTo(stackSeparator.snp.bottom).offset(30)
             make.left.equalTo(view).offset(30)
             make.right.equalTo(view).offset(-30)
-            make.height.equalTo(40)
         }
+
+        signUpStack.snp.makeConstraints { make in
+            make.top.equalTo(facebookAndTwitterButtonStack.snp.bottom).offset(15)
+            make.height.equalTo(40)
+            make.centerX.equalTo(view)
+        }
+
     }
 
     private func setupIcons() {
@@ -342,23 +387,23 @@ extension UITextField {
         rightViewMode = .always
     }
 
-    static func shadowSetting(_ textField: UITextField) {
-        textField.layer.shadowColor = UIColor.black.cgColor
-        textField.layer.shadowOpacity = 0.2
-        textField.layer.shadowOffset = .zero
-        textField.layer.shadowRadius = 10
-        textField.layer.shouldRasterize = true
-        textField.layer.rasterizationScale = UIScreen.main.scale
+    func shadowSetting() {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 10
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
     }
 }
 
 extension UIButton {
-    static func shadowSetting(_ button: UIButton) {
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.3
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10
-        button.layer.shouldRasterize = true
-        button.layer.rasterizationScale = UIScreen.main.scale
+    func shadowSetting() {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 10
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
     }
 }

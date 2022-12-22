@@ -97,7 +97,7 @@ class ViewController: UIViewController {
         return label
     }()
 
-    private lazy var stack: UIStackView = {
+    private lazy var stackSeparator: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
@@ -108,6 +108,43 @@ class ViewController: UIViewController {
         stack.addArrangedSubview(separatorRightView)
         return stack
     }()
+
+    private lazy var facebookLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Facebook"
+        label.textAlignment = .left
+        label.font = UIFont(name: "Inter-Bold", size: 14)
+        label.textColor = .white
+        return label
+    }()
+
+    private lazy var facebookImageView: UIImageView = {
+        let image = UIImage(named: "facebook")
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
+    private lazy var facebookStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fillProportionally
+        stack.spacing = 15
+        stack.addArrangedSubview(facebookImageView)
+        stack.addArrangedSubview(facebookLabel)
+        return stack
+    }()
+
+    private lazy var facebookButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .systemBlue
+        UIButton.shadowSetting(button)
+        return button
+    }()
+
+
 
 
     // MARK: - Lifecycle
@@ -129,8 +166,11 @@ class ViewController: UIViewController {
             passwordTF,
             loginButton,
             passwordRecoveryButton,
-            stack
+            stackSeparator,
+            facebookButton
         ])
+
+        facebookButton.addSubview(facebookStack)
     }
 
     private func setupLayout() {
@@ -177,12 +217,31 @@ class ViewController: UIViewController {
             make.width.equalTo(100)
         }
 
-
-        stack.snp.makeConstraints { make in
-            make.bottom.equalTo(view.snp.bottom).offset(-180)
+        stackSeparator.snp.makeConstraints { make in
+            make.bottom.equalTo(view.snp.bottom).offset(-200)
             make.left.equalTo(view).offset(30)
             make.right.equalTo(view).offset(-30)
         }
+
+        facebookImageView.snp.makeConstraints { make in
+            make.height.equalTo(20)
+            make.width.equalTo(20)
+        }
+
+        facebookStack.snp.makeConstraints { make in
+            make.left.equalTo(facebookButton.snp.left).offset(20)
+            make.right.equalTo(facebookButton.snp.right).offset(-20)
+            make.centerY.equalTo(facebookButton.snp.centerY)
+        }
+
+        facebookButton.snp.makeConstraints { make in
+            make.top.equalTo(stackSeparator.snp.bottom).offset(30)
+            make.left.equalTo(view).offset(30)
+            make.height.equalTo(40)
+            make.width.equalTo(150)
+        }
+
+
     }
 
     private func setupIcons() {

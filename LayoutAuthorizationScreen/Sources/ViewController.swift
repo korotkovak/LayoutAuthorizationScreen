@@ -224,7 +224,6 @@ class ViewController: UIViewController {
         return stack
     }()
 
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -341,7 +340,6 @@ class ViewController: UIViewController {
             make.height.equalTo(40)
             make.centerX.equalTo(view)
         }
-
     }
 
     private func setupIcons() {

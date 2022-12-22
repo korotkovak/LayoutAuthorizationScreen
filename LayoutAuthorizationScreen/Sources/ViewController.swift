@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Login"
         label.textAlignment = .center
-        label.font = UIFont(name: "Inter-Bold", size: 34)
+        label.font = Fonts.boldOfSize34
         label.textColor = .white
         return label
     }()
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         textField.textColor = .black
         textField.textAlignment = .left
         textField.placeholder = "Your name"
-        textField.font = UIFont(name: "Inter-Regular", size: 14)
+        textField.font = Fonts.regularOfSize14
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 25
         textField.shadowSetting()
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         textField.textColor = .black
         textField.textAlignment = .left
         textField.placeholder = "Your password"
-        textField.font = UIFont(name: "Inter-Regular", size: 14)
+        textField.font = Fonts.regularOfSize14
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 25
         textField.shadowSetting()
@@ -59,9 +59,9 @@ class ViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Inter-Bold", size: 16)
+        button.titleLabel?.font = Fonts.boldOfSize16
         button.layer.cornerRadius = 25
-        button.backgroundColor = .systemIndigo
+        button.backgroundColor = Colors.lightIndigo
         button.shadowSetting()
         return button
     }()
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Forgot your password?", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Inter-Regular", size: 16)
+        button.titleLabel?.font = Fonts.regularOfSize16
         return button
     }()
 
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "or connect with"
         label.textAlignment = .center
-        label.font = UIFont(name: "Inter-Regular", size: 14)
+        label.font = Fonts.regularOfSize14
         label.textColor = .gray
         return label
     }()
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Facebook"
         label.textAlignment = .left
-        label.font = UIFont(name: "Inter-Bold", size: 14)
+        label.font = Fonts.boldOfSize14
         label.textColor = .white
         return label
     }()
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
     private lazy var facebookButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 20
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = Colors.blue
         button.addSubview(facebookStack)
         button.shadowSetting()
         return button
@@ -152,7 +152,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Twitter"
         label.textAlignment = .left
-        label.font = UIFont(name: "Inter-Bold", size: 14)
+        label.font = Fonts.boldOfSize14
         label.textColor = .white
         return label
     }()
@@ -178,7 +178,7 @@ class ViewController: UIViewController {
     private lazy var twitterButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 20
-        button.backgroundColor = .systemIndigo
+        button.backgroundColor = Colors.darkIndigo
         button.addSubview(twitterStack)
         button.shadowSetting()
         return button
@@ -200,7 +200,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.text = "Dont have account?"
         label.textAlignment = .left
-        label.font = UIFont(name: "Inter-Regular", size: 14)
+        label.font = Fonts.regularOfSize14
         label.textColor = .gray
         return label
     }()
@@ -208,8 +208,8 @@ class ViewController: UIViewController {
     private lazy var signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign up", for: .normal)
-        button.setTitleColor(.systemIndigo, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Inter-Regular", size: 14)
+        button.setTitleColor(Colors.lightIndigo, for: .normal)
+        button.titleLabel?.font = Fonts.regularOfSize14
         return button
     }()
 

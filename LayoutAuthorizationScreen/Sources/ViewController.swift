@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Inter-Bold", size: 16)
         button.layer.cornerRadius = 25
-        button.backgroundColor = .systemIndigo
+        button.backgroundColor = Colors.lightIndigo
         button.shadowSetting()
         return button
     }()
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
     private lazy var facebookButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 20
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = Colors.blue
         button.addSubview(facebookStack)
         button.shadowSetting()
         return button
@@ -178,7 +178,7 @@ class ViewController: UIViewController {
     private lazy var twitterButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 20
-        button.backgroundColor = .systemIndigo
+        button.backgroundColor = Colors.darkIndigo
         button.addSubview(twitterStack)
         button.shadowSetting()
         return button
